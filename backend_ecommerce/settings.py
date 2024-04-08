@@ -59,6 +59,7 @@ ROOT_URLCONF = 'backend_ecommerce.urls'
 CORS_ALLOWED_ORIGINS = [
      "http://localhost:3000",
 ]
+CSRF_TRUSTED_ORIGINS = ['https://backend-ecommere.onrender.com']
 
 TEMPLATES = [
     {
