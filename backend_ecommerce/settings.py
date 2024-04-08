@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'products',
     'corsheaders',
+    "cloudinary",
+    "upload",
 ]
 
 MIDDLEWARE = [
@@ -49,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -57,9 +59,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'backend_ecommerce.urls'
 CORS_ALLOWED_ORIGINS = [
-     "http://localhost:3000",
+     "http://localhost:3000", #cho phep domain khac truy cap
 ]
-CSRF_TRUSTED_ORIGINS = ['https://backend-ecommere.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://backend-ecommere.onrender.com'] # fix loi production everoment ko login dc admin
 
 TEMPLATES = [
     {
@@ -131,3 +133,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import cloudinary.api
+from decouple import config
+cloudinary.config(
+cloud_name=config("CLOUDINARY_CLOUD_NAME"),
+api_key=config("CLOUDINARY_API_KEY"),
+api_secret=config("CLOUDINARY_API_SECRET"),
+)
