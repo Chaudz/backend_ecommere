@@ -7,7 +7,9 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt \
-    && pip install djangorestframework
+    && pip install djangorestframework \
+    && pip install cloudinary \
+    && pip install python-decouple
 
 COPY . .
 
