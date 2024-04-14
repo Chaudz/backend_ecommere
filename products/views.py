@@ -13,7 +13,7 @@ class CategoryAPIView(views.APIView):
         try:
             categories = Category.objects.all()
             serializer = CategorySerializer(categories, many=True)
-            return custom_response('Get all categories successfully!', 'Success', serializer.data, 200)
+            return custom_response('re', 'Success', serializer.data, 200)
         except:
             return custom_response('Get all categories failed!', 'Error', None, 400)
 

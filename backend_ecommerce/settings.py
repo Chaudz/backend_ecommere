@@ -22,11 +22,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-l=@rnt0=$q)v^)#9@8xhp4oj35bmf)z3+uij9s==fen8en8^my'
 
+import cloudinary.api
+import cloudinary
+import cloudinary.uploader
+from decouple import config
+
+cloudinary.config(
+    cloud_name=config("CLOUDINARY_CLOUD_NAME"),
+    api_key=config("CLOUDINARY_API_KEY"),
+    api_secret=config("CLOUDINARY_API_SECRET"),
+)
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "backend-ecommere.onrender.com"
+    "backend-ecommere.onrender.com",
+    "127.0.0.1"
 ]
 
 
@@ -44,6 +56,7 @@ INSTALLED_APPS = [
     'corsheaders',
     "cloudinary",
     "upload",
+    "demo"
 ]
 
 MIDDLEWARE = [
@@ -133,11 +146,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-import cloudinary.api
-from decouple import config
-cloudinary.config(
-cloud_name=config("CLOUDINARY_CLOUD_NAME"),
-api_key=config("CLOUDINARY_API_KEY"),
-api_secret=config("CLOUDINARY_API_SECRET"),
-)
